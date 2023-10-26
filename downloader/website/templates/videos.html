@@ -1,0 +1,30 @@
+{% extends 'layout.html' %}
+{% block content %}
+
+
+{% if video_url %}
+    <video src="{{video_url}}"></video>
+
+{% endif %}
+
+{% with messages = get_flashed_messages(with_categories=true) %}
+{% if messages %}
+  {% for category,message in messages %}#
+    {% if category == "error" %}
+ <div class="danger-flashd" id="danger">
+    {{message}}
+    <a href="#" class="btntimes" id="btnflash"  style="text-decoration: none;" onclick="Onflash()"><span id="times">x</span></a>
+ </div>
+  {% else %}
+    <div class="success-flashd" id="success">
+      {{message}}
+      <a href="#" class="btntimes" id="btnflash" style="text-decoration: none;" onclick="Onflash()"><span id="times">x</span></a>
+    </div>
+  {% endif %}
+  {% endfor %}
+{% endif %}
+{% endwith %}
+
+{% endblock %}
+    
+    

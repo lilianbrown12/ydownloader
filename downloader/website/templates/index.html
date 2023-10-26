@@ -1,0 +1,93 @@
+{% extends 'layout.html' %}
+{% block content %}
+
+ <div class="container">
+
+  <form action="/" method="post"  class="input-container">
+     <input type="text" name="url" placeholder="Enter YouTube video URL" 
+     id="search-box" required>
+     <input type="submit" name="button" id="navigate-button" 
+     value="Download" class="btn btn-outline-secondary">
+     </div>
+
+     <div class="loading-container">
+      Please wait fetching video
+      <div class="loading-spinner"></div>
+    </div>
+
+  </form> 
+ </div>
+
+ 
+<div id="result"></div>
+</div>
+ 
+
+
+
+
+
+    <video height="240px" width="320px">
+      <source src="cripple.mp4" type="video/mp4">
+    </video>
+
+
+
+{% with messages = get_flashed_messages(with_categories=true) %}
+{% if messages %}
+  {% for category,message in messages %}
+    {% if category == "error" %}
+ <div class="danger-flashd" id="danger">
+    {{message}}
+    <a href="#" class="btntimes" id="btnflash"  style="text-decoration: none;" onclick="Onflash()"><span id="times">x</span></a>
+ </div>
+  {% else %}
+    <div class="success-flashd" id="success">
+      {{message}}
+      <a href="#" class="btntimes" id="btnflash" style="text-decoration: none;" onclick="Onflash()"><span id="times">x</span></a>
+    </div>
+  {% endif %}
+  {% endfor %}
+{% endif %}
+{% endwith %}
+
+
+
+<footer class="dark-footer">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-6">
+        <h4>About</h4>
+        <p>This website allows you to download YouTube videos in various formats. Enjoy your favorite videos offline!</p>
+      </div>
+      <div class="col-md-3">
+        <h4>Quick Links</h4>
+        <ul>
+         
+          <li><a href="#">Privacy Policy</a></li>
+          <li><a href="#">Terms of Service</a></li>
+        </ul>
+      </div>
+
+
+      <script>
+        document.getElementById('navigate-button').addEventListener('click', function() {
+            var loadingContainer = document.querySelector('.loading-container');
+            var content = document.getElementById('content');
+
+            loadingContainer.style.display = 'flex';
+            content.classList.add('hidden');
+
+            // Simulating a delay to demonstrate the loading spinner
+            setTimeout(function() {
+                loadingContainer.style.display = 'none';
+                content.classList.remove('hidden');
+            }, 3000); // Replace with the actual loading time of your page
+        });
+    </script>
+
+
+
+{% endblock %}
+    
+    
